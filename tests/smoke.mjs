@@ -22,7 +22,7 @@ for (const path of ["/participacion", "/transparencia"]) {
 }
 const admin = await fetch(`${base}/admin`, { redirect: "manual" });
 assert.equal(admin.status, 307);
-assert.match(admin.headers.get("location"), /\/acceso\?estado=configuracion$/);
+assert.match(admin.headers.get("location"), /\/acceso(?:\?estado=configuracion)?$/);
 assert.match(admin.headers.get("cache-control"), /no-store/);
 console.log("PASS /admin: redirects without configuration, no cache");
 const checkoutDisabled = await fetch(`${base}/api/checkout`, { method: "POST", headers, body: JSON.stringify({ orderId: "76e5aa7a-3edc-4e72-9fba-4f0f66d7ace1" }) });

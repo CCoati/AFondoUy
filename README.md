@@ -81,7 +81,7 @@ El proyecto usa `netlify.toml`, Node 24 y `npm run build`. Netlify detecta Next.
 
 La función `netlify/functions/expire-reservations.ts` programa expiraciones cada minuto. Netlify ejecuta Scheduled Functions solo en deploy publicado; las vistas previas no disparan el cron automáticamente. Revisá logs y ejecución manual en el panel de Netlify. La función de conciliación de pagos es un endpoint protegido, pero todavía no hay una tarea programada desplegada que lo invoque. Los webhooks deben apuntar al dominio publicado de pruebas.
 
-Para GitHub, conectá el remoto de la organización y revisá el primer push: este directorio aún no tiene repositorio Git ni remoto configurado. `.gitignore` excluye `.env*` salvo `.env.example`, `node_modules`, `.next`, `.netlify`, datos de prueba y logs. Habilitá HTTPS y configurá el dominio en Netlify antes de cambiar `NEXT_PUBLIC_SITE_URL`.
+El código fuente se mantiene en [GitHub](https://github.com/CCoati/AFondoUy). `.gitignore` excluye `.env*` salvo `.env.example`, `node_modules`, `.next`, `.netlify`, datos de prueba y logs. Habilitá HTTPS y configurá el dominio en Netlify antes de definir `NEXT_PUBLIC_SITE_URL`; Netlify también aporta `URL` como respaldo para el dominio principal.
 
 ## Operación, observabilidad y recuperación
 

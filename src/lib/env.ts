@@ -12,5 +12,10 @@ export function getSupabaseConfig() {
 }
 
 export function getSiteUrl() {
-  return z.url().parse(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
+  return z.url().parse(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.URL ||
+    process.env.DEPLOY_PRIME_URL ||
+    "http://localhost:3000",
+  );
 }

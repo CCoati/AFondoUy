@@ -23,8 +23,10 @@ MERCADOPAGO_MODE=sandbox
 MERCADOPAGO_ACCESS_TOKEN=TEST-...
 MERCADOPAGO_WEBHOOK_SECRET=...
 MERCADOPAGO_EXPECTED_COLLECTOR_ID=...
-NEXT_PUBLIC_SITE_URL=https://tu-url-de-pruebas
+NEXT_PUBLIC_SITE_URL=https://tu-dominio-publicado
 ```
+
+En Netlify, `URL` identifica el dominio principal publicado y se usa automáticamente como respaldo si `NEXT_PUBLIC_SITE_URL` no está definida. La validación de origen también acepta el host de la solicitud y rechaza otros sitios; no es necesario permitir `*` ni desactivar la protección.
 
 El proyecto Supabase debe ser exclusivo de pruebas. Configurar el webhook de pago de la aplicación de prueba en Mercado Pago hacia `/api/webhooks/mercadopago`. Para recibir notificaciones en desarrollo, la URL tiene que ser públicamente accesible por HTTPS.
 

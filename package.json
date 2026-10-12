@@ -11,7 +11,7 @@
     "start": "next start",
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint .",
-    "test": "tsx --test tests/auth.test.ts tests/demo.test.ts tests/payments.test.ts tests/participation.test.ts tests/raffle.test.ts tests/reservation.test.ts",
+    "test": "tsx --test tests/auth.test.ts tests/demo.test.ts tests/origin.test.ts tests/payments.test.ts tests/participation.test.ts tests/raffle.test.ts tests/reservation.test.ts",
     "test:db": "node tests/database.mjs",
     "test:smoke": "node tests/smoke.mjs",
     "check": "npm run typecheck && npm run lint && npm test && npm run build"

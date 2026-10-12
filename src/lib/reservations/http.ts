@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { getSiteUrl } from "@/lib/env";
+import { isAllowedRequestOrigin } from "@/domain/request-origin";
 const errors: Record<string, [number, string]> = {
   OWNER_REQUIRED: [403,"Solo el propietario puede gestionar permisos administrativos."],
   LAST_OWNER_REQUIRED: [409,"Debe quedar al menos un propietario activo."],
@@ -27,9 +28,15 @@ export function failure(error: unknown) {
   return json({ code: errors[code] ? code : "UNAVAILABLE", message }, status);
 }
 export function sameOrigin(request: Request) {
-  const origin = request.headers.get("origin"), allowed = [new URL(getSiteUrl()).origin];
-  if (process.env.NODE_ENV === "development") allowed.push("http://localhost:3000", "http://127.0.0.1:3000");
-  if (!origin || !allowed.includes(origin)) throw new Error("ORIGIN_DENIED");
+  const allowedSites = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.URL,
+    process.env.DEPLOY_PRIME_URL,
+    getSiteUrl(),
+  ];
+  if (!isAllowedRequestOrigin(request.headers.get("origin"), request.url, allowedSites, process.env.NODE_ENV === "development")) {
+    throw new Error("ORIGIN_DENIED");
+  }
 }
 export async function readJson(request: Request) {
   if (!request.headers.get("content-type")?.startsWith("application/json")) throw new SyntaxError();
