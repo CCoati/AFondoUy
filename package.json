@@ -1,0 +1,44 @@
+{
+  "name": "a-fondo-uy",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "test": "tsx --test tests/auth.test.ts tests/demo.test.ts tests/payments.test.ts tests/participation.test.ts tests/raffle.test.ts tests/reservation.test.ts",
+    "test:db": "node tests/database.mjs",
+    "test:smoke": "node tests/smoke.mjs",
+    "check": "npm run typecheck && npm run lint && npm test && npm run build"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.117.3",
+    "mercadopago": "3.6.1",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "0.0.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "embedded-postgres": "18.4.0-beta.17",
+    "eslint": "10.12.0",
+    "eslint-config-next": "16.4.0",
+    "pg": "8.23.1",
+    "postcss": "8.5.29",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

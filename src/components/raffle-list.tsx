@@ -1,0 +1,8 @@
+import Link from "next/link";
+import type { RaffleListing } from "@/lib/raffles";
+import { formatUYU } from "@/domain/raffle";
+export function RaffleList({ listing, history = false }: { listing: RaffleListing; history?: boolean }) {
+  if (listing.state === "unavailable") return <div className="empty-state" role="status"><span className="empty-icon" aria-hidden="true">!</span><div><h3>No pudimos consultar los sorteos</h3><p>Probá recargar la página dentro de unos minutos.</p></div><a className="button secondary" href={history ? "/resultados" : "/#sorteos"}>Volver a intentar ↗</a></div>;
+  if (!listing.raffles.length) return <div className="empty-state"><span className="empty-icon" aria-hidden="true">↗</span><div><p className="eyebrow">{history ? "EL RECORRIDO RECIÉN EMPIEZA" : "PRÓXIMAMENTE"}</p><h3>{history ? "Todavía no hay sorteos finalizados" : "El próximo gran momento está en camino."}</h3><p>{history ? "Acá podrás consultar los sorteos cerrados y sus resultados publicados." : "Aún no hay sorteos publicados. Cuando estén disponibles, los vas a encontrar acá."}</p></div>{!history && <Link className="text-link" href="/preguntas-frecuentes">Conocé la propuesta ↗</Link>}</div>;
+  return <div className="raffle-grid">{listing.raffles.map((raffle) => <article className="panel" key={raffle.id}><p className="eyebrow">{raffle.status === "active" ? "SORTEO ACTIVO" : "SORTEO FINALIZADO"}</p><h3 className="mt-4 text-2xl font-bold">{raffle.title}</h3><p className="muted mt-4">{raffle.description}</p><p className="mt-6">{formatUYU(raffle.price_minor)} UYU <span className="muted">por número</span></p><Link className="button secondary mt-6" href={`/sorteos/${raffle.slug}`}>Ver sorteo ↗</Link></article>)}</div>;
+}

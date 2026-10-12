@@ -1,0 +1,10 @@
+import Link from "next/link";
+import { Brand } from "./brand";
+import { Navigation } from "./navigation";
+import { Icon } from "./icon";
+export function SiteHeader() {
+  return <><a className="skip-link" href="#contenido">Saltar al contenido</a><div className="announcement"><span className="demo-dot" /> ENTORNO DE PRUEBAS <span className="announcement-detail">· Premios demo identificados. Pagos reales deshabilitados.</span></div><header className="site-header"><div className="wrap header-inner"><Brand /><Navigation /><Link className="header-cart" href="/carrito" aria-label="Mi selección"><Icon name="ticket" /><span>Mi selección</span></Link><Link className="button header-cta" href="/demo/sorteos/coupe-gt#numeros">Elegí tus números <Icon name="diagonal" /></Link></div></header></>;
+}
+export function SiteFooter() {
+  return <footer className="site-footer"><div className="wrap"><div className="footer-top"><div className="footer-brand"><Brand /><p>La emoción de ir por más.<br />Desde Uruguay. A fondo.</p><span className="country-label"><span className="tiny-checker" aria-hidden="true" /> URUGUAY · UYU</span></div><div><h3>Explorá</h3><Link href="/#sorteos">Sorteos</Link><Link href="/#como-participar">Cómo participar</Link><Link href="/resultados">Resultados</Link><Link href="/participacion">Consultar participación</Link></div><div><h3>Estamos para ayudarte</h3><Link href="/preguntas-frecuentes">Preguntas frecuentes</Link><Link href="/carrito">Mi selección</Link><Link href="/acceso">Administración</Link></div><div><h3>Las cosas, claras</h3><Link href="/transparencia">Transparencia</Link><Link href="/terminos">Términos y condiciones</Link><Link href="/privacidad">Política de privacidad</Link><p className="footer-disclaimer">Versión demostrativa.<br />No se reciben pagos.</p></div></div><div className="footer-bottom"><span>© 2026 A FONDO UY</span><span>Diseñado para quienes van por más.</span><a href="#contenido" className="back-to-top">Volver arriba ↑</a></div></div></footer>;
+}
